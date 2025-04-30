@@ -1,0 +1,46 @@
+# Deployment pour ton app Node.js
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solds-deployment
+  namespace: default
+  labels:
+    app: solds
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solds
+  template:
+    metadata:
+      labels:
+        app: solds
+    spec:
+      containers:
+      - name: solds
+        image: amine219/solds:1
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+
+
+---
+# Service pour exposer ton app Node.js
+apiVersion: v1
+kind: Service
+metadata:
+  name: solds-service
+  namespace: default
+  labels:
+    app: solds
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: solds
+  
+  
