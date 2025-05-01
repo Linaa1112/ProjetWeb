@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: transaction
-        image: amine219/transaction-service:1  # Remplace par ton image si besoin
+        image: feeclochette75/transaction:2 # Remplace par ton image si besoin
         ports:
         - containerPort: 3001
         env:
@@ -29,6 +29,8 @@ kind: Service
 metadata:
   name: transaction-service
   namespace: default
+  labels:
+    app: transaction
 spec:
   type: ClusterIP
   selector:

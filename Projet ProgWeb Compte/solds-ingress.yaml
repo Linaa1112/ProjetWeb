@@ -35,3 +35,10 @@ spec:
             name: transaction-service
             port:
               number: 3001
+      - path: /ui
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 3002
